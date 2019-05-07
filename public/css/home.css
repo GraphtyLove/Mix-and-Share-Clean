@@ -1,0 +1,37 @@
+@font-face { font-family: "Pacifico-Regular"; src: url("../font/Pacifico-Regular.ttf"); }
+
+@font-face { font-family: "VarelaRound-Regular"; src: url("../font/VarelaRound-Regular.ttf"); }
+
+html, body { margin: 0; padding: 0; font-family: "VarelaRound-Regular"; background-image: url("../img/wall.jpg"); color: white; }
+
+h1, h2 { font-size: 22px; font-family: "Pacifico-Regular"; font-weight: normal; color: white; }
+
+a { text-decoration: none; text-align: center; color: white; }
+
+a:visited { color: white; }
+
+/********************************** Mobile            ** */
+header, main, footer { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+nav { background-color: #2d014b; height: 50px; color: white; font-size: 18px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+nav ul { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; list-style: none; margin: 0; width: 94vw; }
+
+nav ul .nav-left { margin-right: auto; }
+
+nav ul .nav-right { margin: 0 13px; }
+
+header img { height: 150px; width: 150px; border-radius: 50%; margin-top: 10%; }
+
+header h1 { pointer-events: none; margin: 5% 5%; font-size: 60px; text-align: center; line-height: 1; color: #c6e2ff; -webkit-animation: neon .08s ease-in-out infinite alternate; animation: neon .08s ease-in-out infinite alternate; }
+
+main a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; background-color: #2d014b; height: 40px; width: 150px; border-radius: 50px; font-size: 18px; font-weight: bold; margin: 15px 0; }
+
+footer .footer-triangle { border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 20px solid white; }
+
+@-webkit-keyframes neon { from { text-shadow: 0 0 6px rgba(150, 50, 190, 0.92), 0 0 30px rgba(150, 50, 190, 0.34), 0 0 12px rgba(200, 30, 170, 0.52), 0 0 21px rgba(200, 30, 170, 0.92), 0 0 34px rgba(200, 30, 170, 0.78), 0 0 54px rgba(200, 30, 170, 0.92); }
+  to { text-shadow: 0 0 6px rgba(150, 50, 190, 0.98), 0 0 30px rgba(150, 50, 190, 0.42), 0 0 12px rgba(200, 30, 170, 0.58), 0 0 22px rgba(200, 30, 170, 0.84), 0 0 38px rgba(200, 30, 170, 0.88), 0 0 60px #c81eaa; } }
+
+@keyframes neon { from { text-shadow: 0 0 6px rgba(150, 50, 190, 0.92), 0 0 30px rgba(150, 50, 190, 0.34), 0 0 12px rgba(200, 30, 170, 0.52), 0 0 21px rgba(200, 30, 170, 0.92), 0 0 34px rgba(200, 30, 170, 0.78), 0 0 54px rgba(200, 30, 170, 0.92); }
+  to { text-shadow: 0 0 6px rgba(150, 50, 190, 0.98), 0 0 30px rgba(150, 50, 190, 0.42), 0 0 12px rgba(200, 30, 170, 0.58), 0 0 22px rgba(200, 30, 170, 0.84), 0 0 38px rgba(200, 30, 170, 0.88), 0 0 60px #c81eaa; } }
+/*# sourceMappingURL=home.css.map */

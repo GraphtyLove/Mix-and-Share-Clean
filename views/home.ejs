@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="/css/home.css" />
+		<title>Mix and Share</title>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li class="nav-left"><%=user.firstname%></li>
+				<li class="nav-right"><a href="/profil">Profile</a></li>
+				<li class="nav-right"><a href="/logout">Se déconnecter</a></li>
+			</ul>
+		</nav>
+		<header>
+			<img src="/img/image.jpeg" alt="Logo mix and share" />
+			<h1>Mix and Share</h1>
+		</header>
+		<main>
+			<a href="cocktail" class="cocktailButton">Cocktail</a>
+			<a href="event" class="eventButton">Event</a>
+		</main>
+		<footer>
+			<h2>Cocktail du mois</h2>
+			<div class="footer-triangle" onclick="location.href='infoAlcool';"></div>
+		</footer>
+	</body>
+</html>

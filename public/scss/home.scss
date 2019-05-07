@@ -1,0 +1,102 @@
+// ---------- IMPORTS ----------
+@import 'general';
+
+/**********************************
+**             Mobile            **
+***********************************/
+
+// ---------- GENERAL ----------
+header, main, footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// ---------- NAV MENU ----------
+nav{
+    background-color: #2d014b;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    ul{
+        display: flex;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        width: 94vw;
+        .nav-left{
+            margin-right: auto;
+        }
+        .nav-right{
+            margin: 0 13px;
+        }
+        
+    }
+}
+
+// --------- HEADER ----------
+header{
+    img{
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        margin-top: 10%;
+    }
+    h1{
+        pointer-events: none;
+        margin: 5% 5%;
+        font-size: 60px;
+        text-align: center;
+        line-height: 1;
+        color: #c6e2ff;
+        animation: neon .08s ease-in-out infinite alternate;
+    }
+}
+
+// ---------- MAIN ---------
+main{
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2d014b;
+        height: 40px;
+        width: 150px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 15px 0;
+    }
+}
+
+// --------- FOOTER ---------
+footer{
+    .footer-triangle{
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 20px solid white;
+    }
+}
+
+@keyframes neon {
+    from {
+        text-shadow:
+        0 0 6px rgba(150,50,190,0.92),
+        0 0 30px rgba(150,50,190,0.34),
+        0 0 12px rgba(200,30,170,0.52),
+        0 0 21px rgba(200,30,170,0.92),
+        0 0 34px rgba(200,30,170,0.78),
+        0 0 54px rgba(200,30,170,0.92);
+    }
+    to {
+        text-shadow:
+        0 0 6px rgba(150,50,190,0.98),
+        0 0 30px rgba(150,50,190,0.42),
+        0 0 12px rgba(200,30,170,0.58),
+        0 0 22px rgba(200,30,170,0.84),
+        0 0 38px rgba(200,30,170,0.88),
+        0 0 60px rgba(200,30,170,1);
+    }
+}
