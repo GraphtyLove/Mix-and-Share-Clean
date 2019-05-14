@@ -43,3 +43,13 @@ form{
     border: none;
     padding: 5px 20px;
 }
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textCocktail{
+    text-decoration: underline;
+}

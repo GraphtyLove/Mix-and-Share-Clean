@@ -377,7 +377,6 @@ app.post("/upload", function(req, res) {
 	});
 });
 
-
 // ---------- 12. Cocktail of the month (infoAlcool.ejs) ----------
 app.get('/infoAlcool', function (req, res) {
     if (!req.session.connected) {
