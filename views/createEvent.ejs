@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/createEvent.css">
+    <title>Créer une soirée</title>
+</head>
+<body>
+    <header>
+        <div class="triangle" onclick="location.href='/event';"></div>
+    </header>
+
+    <main>
+        <h1>Creer un event</h1>
+        <form action="/createevent" method="POST">
+            <input name="name_event" class="input-info" type="text" placeholder="Nom de la soirée" autofocus>
+            <input name="date_event" class="input-info" type="date">
+            <input name="adresse" class="input-info" type="text" placeholder="Adresse">
+            <input class="envoiCreateEvent" type="submit" value="Créer">
+        </form>
+    </main>
+    <footer>
+        <h2>Code :</h2>
+        <%if (event == null) { %>
+            <p>Pas de soirée prévue.</p>
+            <% } else{ %>
+            <p><%= event.id %></p>
+            <% } %>
+    </footer>
+</body>
+</html>

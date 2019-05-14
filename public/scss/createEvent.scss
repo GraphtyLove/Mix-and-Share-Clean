@@ -1,0 +1,76 @@
+// ---------- IMPORTS ----------
+@import 'general';
+@import 'headerback';
+
+/**********************************
+**             Mobile            **
+***********************************/
+
+// ---------- TITLES ----------
+h1{
+    font-size: 25px;
+    margin-left: 10px;
+}
+h2{
+    font-size: 20px;
+}
+
+// ---------- FORM ----------
+main{
+    margin-top: 50px;
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        .input-info{
+            background-color: rgba(0,0,0,0);
+            color : white;
+            margin-top: 15px;
+            border: none;
+            border-bottom: 1px solid #2d014b;
+            border-radius: 2px;
+            width: 250px;
+            padding: 8px 0;
+            font-size: 16px;
+            &:focus{
+                border-color: #fff;
+                font-size: 18px;
+            }
+        }
+        .envoiCreateEvent{
+            margin-top: 15px;
+            background-color: #2d014b;
+            color:white;
+            border:none;
+            border-radius: 50px;
+            font-size: 18px;
+            padding: 10px 50px;
+            cursor: pointer;
+        }
+    }
+}
+
+// ---------- CODE ----------
+footer{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p{
+        border-radius: 50px;
+        font-size: 15px;
+        border:3px solid #2d014b;
+        padding: 8px 12px;
+    }
+}
+
+/**********************************
+**         Ipad and bigger       **
+***********************************/
+
+@media screen and (min-width: 768px) {
+    h1{
+        margin-left: 10vw;
+    }
+}

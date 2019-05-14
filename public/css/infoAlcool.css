@@ -1,0 +1,40 @@
+@font-face { font-family: "Pacifico-Regular"; src: url("../font/Pacifico-Regular.ttf"); }
+
+@font-face { font-family: "VarelaRound-Regular"; src: url("../font/VarelaRound-Regular.ttf"); }
+
+body { margin: 0; padding: 0; font-family: "VarelaRound-Regular"; background-image: url("../img/wall.jpg"); color: white; }
+
+h1, h2 { font-size: 22px; font-family: "Pacifico-Regular"; font-weight: normal; color: white; }
+
+a { text-decoration: none; text-align: center; color: white; }
+
+a:visited { color: white; }
+
+header { background-color: #350157; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; height: 50px; }
+
+header .triangle { border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 20px solid white; cursor: pointer; }
+
+/********************************** Mobile            ** */
+main { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; text-align: center; margin: 0 30px; margin-bottom: 40px; }
+
+img { overflow: hidden; height: 150px; width: 150px; border-radius: 50%; margin-top: 50px; }
+
+h1 { font-size: 40px; }
+
+h2 { font-size: 30px; line-height: 1; color: #c6e2ff; -webkit-animation: neon .08s ease-in-out infinite alternate; animation: neon .08s ease-in-out infinite alternate; }
+
+.difficultyBarSkill { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+.difficultyBarSkill .difficultyBar { height: 10px; width: 40px; border: 1.5px solid white; border-radius: 50px; margin: 0 5px; }
+
+.difficultyBarSkill .barOn { background-color: #2d014b; }
+
+ul { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: 0; }
+
+ul li { list-style: none; margin-bottom: 5px; }
+
+.textPrepa { text-align: justify; }
+
+/********************************** Ipad & bigger        ** */
+@media screen and (min-width: 768px) { .preparation { max-width: 500px; } }
+/*# sourceMappingURL=infoAlcool.css.map */

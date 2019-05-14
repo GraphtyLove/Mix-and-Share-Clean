@@ -1,0 +1,80 @@
+// ---------- IMPORTS ----------
+@import 'general';
+@import 'headerback';
+
+/**********************************
+**             Mobile            **
+***********************************/
+
+// ---------- GENERAL ----------
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 30px;
+    margin-bottom: 40px;
+}
+
+// --------- LOGO ----------
+img{
+    overflow: hidden;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-top: 50px;
+}
+
+// --------- TITLES ---------
+h1{
+    font-size: 40px;
+}
+h2{
+    font-size: 30px;
+    line-height: 1;
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
+}
+
+// --------- BAR OF DIFFICULTY ---------
+.difficultyBarSkill{
+    display: flex;
+    align-items: center;
+    .difficultyBar{
+        height: 10px;
+        width: 40px;
+        border: 1.5px solid white;
+        border-radius: 50px;
+        margin: 0 5px;
+    }
+    .barOn{
+        background-color: #2d014b;
+    }
+}
+
+// --------- INGRDIENTS ---------
+ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    li{
+        list-style: none;
+        margin-bottom: 5px;
+    }
+}
+
+// --------- PREPARATION ---------
+.textPrepa{
+    text-align: justify;
+}
+
+/**********************************
+**          Ipad & bigger        **
+***********************************/
+
+@media screen and (min-width: 768px) {
+    .preparation{
+        max-width: 500px;
+    }
+}

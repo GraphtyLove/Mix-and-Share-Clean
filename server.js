@@ -14,7 +14,7 @@ let session = require('express-session');
 const app = express();
 
 // ---------- ROUTS CONFIG ----------
-app.use(express.static(__dirname + '/assets'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
     extend: true
 }));
@@ -367,4 +367,4 @@ app.get('/infoAlcool', function (req, res) {
 **             WEBSITE PORT LISTENING               **
 *****************************************************/
 
-app.listen(8020);
+app.listen(80);

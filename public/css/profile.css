@@ -1,0 +1,27 @@
+@font-face { font-family: "Pacifico-Regular"; src: url("../font/Pacifico-Regular.ttf"); }
+
+@font-face { font-family: "VarelaRound-Regular"; src: url("../font/VarelaRound-Regular.ttf"); }
+
+body { margin: 0; padding: 0; font-family: "VarelaRound-Regular"; background-image: url("../img/wall.jpg"); color: white; }
+
+h1, h2 { font-size: 22px; font-family: "Pacifico-Regular"; font-weight: normal; color: white; }
+
+a { text-decoration: none; text-align: center; color: white; }
+
+a:visited { color: white; }
+
+header { background-color: #350157; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; height: 50px; }
+
+header .triangle { border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 20px solid white; cursor: pointer; }
+
+/********************************** Mobile            ** */
+main { margin-top: 10%; text-align: center; }
+
+main img { overflow: hidden; height: 150px; width: 150px; border-radius: 50%; margin-top: 10%; }
+
+main h1 { margin-top: 5%; font-size: 36px; text-align: center; line-height: 1; color: #c6e2ff; -webkit-animation: neon .08s ease-in-out infinite alternate; animation: neon .08s ease-in-out infinite alternate; }
+
+footer p { text-align: center; margin-top: 40px; font-size: 20px; }
+
+footer p .button { background-color: #2d014b; height: 1400px; width: 200px; border-radius: 50px; font-size: 18px; }
+/*# sourceMappingURL=profile.css.map */

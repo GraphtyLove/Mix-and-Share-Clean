@@ -2,7 +2,7 @@
 
 @font-face { font-family: "VarelaRound-Regular"; src: url("../font/VarelaRound-Regular.ttf"); }
 
-html, body { margin: 0; padding: 0; font-family: "VarelaRound-Regular"; background-image: url("../img/wall.jpg"); color: white; }
+body { margin: 0; padding: 0; font-family: "VarelaRound-Regular"; background-image: url("../img/wall.jpg"); color: white; }
 
 h1, h2 { font-size: 22px; font-family: "Pacifico-Regular"; font-weight: normal; color: white; }
 

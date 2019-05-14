@@ -4,12 +4,12 @@
 
 // Variable that contain the anwer of the API (as an object)
 let answerOfTheApi;
-
+console.log("open");
 // Call of the API
 $("#uploadForm").submit(function(e) {
 	e.preventDefault();
 	let formData = new FormData(this);
-
+	console.log("test 1");
 	$.ajax({
 		url: "/upload",
 		data: formData,
@@ -20,7 +20,7 @@ $("#uploadForm").submit(function(e) {
 	}).done(function(data) {
 		let json = JSON.parse(data);
 		let url = json.url;
-		console.log("test");
+		console.log("test 2");
 		$.ajax({
 			url:
 				"https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/027982a2-369c-4e04-a5a0-496e43a8f720/detect/iterations/Iteration14/url/",

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/upload.css">
+    <title>Soirée</title>
+</head>
+<body>
+    <header>
+        <div onclick="location.href='/event'" class="triangle"></div>
+    </header>
+    <main>
+        <h1>Soirée de Jerome</h1>
+        <h2>Ajouter des bouteilles:</h2>
+        <form id="uploadForm" action="/upload" enctype="multipart/form-data" method="POST">
+            <input type="file" name="picture" class="input-img" value="Choisir une photo">
+            <input type="submit" class="button-submit" value="Envoyer dans l'armoire">
+        </form>
+        <section id="anwerOfApiDiv">
+            <h2>Armoire:</h2>
+        </section>
+        <footer id ="listcoktails">
+            <h2>Coktails possibles:</h2>       
+        </footer>
+    </main>
+<script src="/api.js"></script>
+</body>
+</html>
