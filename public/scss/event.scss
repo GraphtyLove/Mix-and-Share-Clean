@@ -1,0 +1,91 @@
+// ---------- IMPORTS ----------
+@import 'general';
+@import 'headerback';
+
+/**********************************
+**             Mobile            **
+***********************************/
+
+// ---------- GENERAL ----------
+
+h1{
+    font-size: 22px;
+    margin:5% 0 0 5%;
+}
+
+// ---------- MAIN ----------
+main{
+    margin-top:20px;  
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .joind-event-button{
+            max-width: 300px;
+            border: none;
+        }
+    }
+    .input-code-event{
+        background-color: rgba(0,0,0,0);
+        border: none;
+        border-bottom: 1px solid white;
+        border-radius: 2px;
+        width: 70vw;
+        padding: 8px 0;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        &:focus{
+            font-size: 20px;
+        }
+    }
+    .create-event-button{
+        margin-top: 20px;
+        background-color:#2d014b;
+        color:white;
+        padding: 10px 30px;
+        border-radius: 50px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+h2{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+// ---------- EVENT LIST ----------
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        li{
+            margin: 20px 0;
+            list-style: none;
+        }
+    }
+    a{
+        margin-top: 10px;
+        background-color: rgba(0,0,0,0);
+        color:white;
+        border:none;
+        padding: 10px 30px;
+        border-radius: 50px;
+        font-size: 15px;
+        border: 3px solid #2d014b;
+    }
+}

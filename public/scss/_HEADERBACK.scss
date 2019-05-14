@@ -1,0 +1,13 @@
+header{
+    background-color: #350157;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    .triangle{
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid white;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Cocktail</title>
+</head>
+<body>
+    <header>
+        <div class="triangle" onclick="location.href='/home';"></div>
+    </header>
+    <main>
+        <section>
+        <h1>Cocktails</h1>
+        <form action="">
+            <input type="search" name="" id="" placeholder="Rechercher...">
+        </form>
+        </section>
+        <section class="CocktailList">
+            <ul>
+                <% for(let i=0; i < liste.length; i++) { %><li><a href='/infoAlcool'><%= liste[i].name %></a></li><% } %>
+            </ul>
+        </section>   
+    </main>
+</body>
+</html>

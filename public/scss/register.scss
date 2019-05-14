@@ -1,0 +1,66 @@
+// ---------- IMPORTS ----------
+@import 'general';
+@import 'headerback';
+
+/**********************************
+**             Mobile            **
+***********************************/
+
+main{
+    h1{
+        margin: 30px;
+        font-size: 25px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        p{
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        .button{
+            background-color: #2d014b;
+            border:none;
+            height: 40px;
+            width: 150px;
+            border-radius: 50px;
+            color: white;
+            font-size: 18px;
+            margin: 30px;
+        }
+        .inputInscription{
+            border: none;
+            border-bottom: 1px solid white;
+            border-radius: 2px;
+            width: 250px;
+            padding: 8px 0;
+            background-color: rgba(0,0,0,0);
+            color:white;
+            font-size: 15px;
+        }
+        .inputInscription:focus{
+            outline: none !important;
+            border-color: #2d014b;
+            border-bottom: 1px solid #2d014b;
+            font-size: 20px;
+        }
+    }
+}
+
+/**********************************
+**         Ipad and bigger       **
+***********************************/
+
+@media screen and (min-width: 768px) {
+    main{
+        form{
+            .inputInscription{
+                width: 400px;
+                margin: 20px;
+            }
+        }
+    }
+}

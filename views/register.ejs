@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/register.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <title>Inscription</title>
+</head>
+<body>
+    <header>
+        <div class="triangle" id="return" onclick="location.href='/home';"></div>
+    </header>
+    <main>
+        <h1>Inscription</h1>
+        <form action="/register" method="POST">
+            <label><p>Email</p></label>
+            <input class="inputInscription" type="email" name="login" autofocus>
+            <label><p>Mot de passe</p></label>
+            <input name="password" class="inputInscription" type="password">
+            <label><p>Confirmer le mot de passe</p></label>
+            <input name="password2" class="inputInscription" type="password">
+            <label><p>Nom</p></label>
+            <input name="name" class="inputInscription" type="text">
+            <label><p>Prénom</p></label>
+            <input name="firstname" class="inputInscription" type="text">
+            <input class="button" type="submit" value="Créer le compte">
+        </form>
+    </main>
+</body>
+</html>
