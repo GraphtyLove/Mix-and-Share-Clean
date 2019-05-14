@@ -11,6 +11,8 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
+let multer = require("multer");
+let path = require("path");
 const app = express();
 
 // ---------- ROUTS CONFIG ----------
@@ -28,6 +30,30 @@ app.use(
         saveUninitialized: true,
     })
 );
+
+// ---------- MULTER CONFIG ----------
+// ----- Multer is a package that I use to upload the images in the server for Custom Vision API-----
+let storage = multer.diskStorage({
+	destination: function(req, file, callback) {
+		callback(null, "./public/img");
+	},
+	filename: function(req, file, callback) {
+        // Format the name of the file
+		callback(
+			null,
+			file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+		);
+	}
+});
+
+multerHandler = multer({
+	storage: storage,
+	limits: {
+		fileSize: 15 * 1024 * 1024,
+		fieldSize: 500 * 1024 * 1024
+	}
+});
+
 
 // ---------- DATABASE connect ----------
 r = require('rethinkdb');
@@ -331,16 +357,26 @@ app.get('/soiree', function (req, res) {
     });
 });
 
-// ---------- 11. Add bottel (upload.ejs) ----------
+// ---------- 11. Add bottles (upload.ejs) ----------
 app.get("/upload", function(req, res) {
 	if (!req.session.connected) {
 		res.redirect("/");
 		return;
 	}
-	res.render("upload.ejs", {
-		user: req.session.user
+	res.render("upload.ejs");
+});
+// --- Set where and how images are upload in the server ---
+app.post("/upload", function(req, res) {
+	let fs = require("fs-extra");
+	multerHandler.fields([
+		{ name: "picture", maxCount: 1 }
+	])(req, res, function(r) {
+		let file = req.files.picture[0];
+		let path = file.path.replace("public/", "");
+		res.send(JSON.stringify({ url: "http://54.37.157.250:80/" + path }));
 	});
 });
+
 
 // ---------- 12. Cocktail of the month (infoAlcool.ejs) ----------
 app.get('/infoAlcool', function (req, res) {
