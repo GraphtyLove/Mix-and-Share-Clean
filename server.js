@@ -36,9 +36,9 @@ app.use(
 let storage = multer.diskStorage({
 	destination: function(req, file, callback) {
 		callback(null, "./public/img");
-	},
+    },
+    // Format the name of the file
 	filename: function(req, file, callback) {
-        // Format the name of the file
 		callback(
 			null,
 			file.fieldname + "-" + Date.now() + path.extname(file.originalname)
@@ -117,7 +117,6 @@ app.post('/register', function (req, res) {
     let password2 = req.body.password2;
 
     if(name.length > 2 && firstname.length > 2 && validateEmail(login) && password === password2){
-        
         // Request DB:
         r
         .db('MixAndShare')
@@ -139,7 +138,7 @@ app.post('/register', function (req, res) {
                     })
                     .run(connection);
                     res.redirect('/');
-                    console.log('register succes!');
+                    console.log(`User Registration succes! name: ${firstname}, mail: ${login}`);
                 } else {
                 res.render({message :"mail existant"});
                 res.redirect('/register');
@@ -149,7 +148,7 @@ app.post('/register', function (req, res) {
     }
     else{
         res.redirect('/register');
-        console.log('Register failed');
+        console.log('User registration failed');
         return;
     }
 });

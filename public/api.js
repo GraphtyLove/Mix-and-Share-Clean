@@ -1,15 +1,15 @@
 /***************************************************************
- **                  API Custom Vision 	                      **
- ***************************************************************/
+**                  	API Custom Vision 	                  **
+****************************************************************/
 
 // Variable that contain the anwer of the API (as an object)
 let answerOfTheApi;
-console.log("open");
+console.log("Js file is running...");
 // Call of the API
 $("#uploadForm").submit(function(e) {
 	e.preventDefault();
 	let formData = new FormData(this);
-	console.log("test 1");
+	console.log("Waiting answer from API...");
 	$.ajax({
 		url: "/upload",
 		data: formData,
@@ -42,12 +42,11 @@ $("#uploadForm").submit(function(e) {
 		})
 			.done(function(data) {
 				answerOfTheApi = data;
-				console.log("API success:");
-				console.log(answerOfTheApi);
+				console.log(`API call success. Answer: ${answerOfTheApi}`);
 				showAnswer();
 			})
 			.fail(function(err) {
-				console.log(`API fail: ${err}`);
+				console.log(`API fail. Error: ${err}`);
 				textToDisplay = "Nous n'avons pas détecté de bouteilles. Veuillez réessayer.";
 				let answerDiv = document.createElement("p");
 				answerDiv.classList.add("textBottle");
@@ -66,28 +65,25 @@ let showAnswer = () => {
 	let vodka = 0;
 	let rhum = 0;
 
-	// Add bottles of each alcohol in his variable if there is more than 25% of precision
+	// Add bottles for each alcohol in his variable if there is more than 25% of precision
 	for (let i = 0; i < answerOfTheApi.predictions.length; i++) {
 		if (
 			answerOfTheApi.predictions[i].tagName === "vodka" &&
 			answerOfTheApi.predictions[i].probability > 0.25
 		) {
 			vodka++;
-			console.log(vodka);
 		}
 		if (
 			answerOfTheApi.predictions[i].tagName === "rhum" &&
 			answerOfTheApi.predictions[i].probability > 0.25
 		) {
 			rhum++;
-			console.log(rhum);
 		}
 		if (
 			answerOfTheApi.predictions[i].tagName === "tequila" &&
 			answerOfTheApi.predictions[i].probability > 0.25
 		) {
 			tequila++;
-			console.log(tequila);
 		}
 	}
 
@@ -105,7 +101,7 @@ let showAnswer = () => {
 	}
 	if (rhum === 0 && vodka === 0 && tequila === 0) {
 		textToDisplay =
-			"Nous n'avons pas détecté de bouteilles. Veuillez réessayer.";
+			"Nous n'avons pas détecté de bouteille. Veuillez réessayer.";
 	}
 
 	// Create the div we will add when we have the anwer of the API
