@@ -32,7 +32,7 @@ app.use(
 );
 
 // ---------- MULTER CONFIG ----------
-// ----- Multer is a package that I use to upload the images in the server for Custom Vision API-----
+// ----- Multer is a package that I use to upload images in the server for Custom Vision API-----
 let storage = multer.diskStorage({
 	destination: function(req, file, callback) {
 		callback(null, "./public/img");
@@ -45,7 +45,6 @@ let storage = multer.diskStorage({
 		);
 	}
 });
-
 multerHandler = multer({
 	storage: storage,
 	limits: {
@@ -53,7 +52,6 @@ multerHandler = multer({
 		fieldSize: 500 * 1024 * 1024
 	}
 });
-
 
 // ---------- DATABASE connect ----------
 r = require('rethinkdb');

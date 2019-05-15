@@ -20,7 +20,7 @@ $("#uploadForm").submit(function(e) {
 	}).done(function(data) {
 		let json = JSON.parse(data);
 		let url = json.url;
-		console.log("test 2");
+		console.log("Image added on the server.");
 		$.ajax({
 			url:
 				"https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/027982a2-369c-4e04-a5a0-496e43a8f720/detect/iterations/Iteration14/url/",
@@ -100,8 +100,7 @@ let showAnswer = () => {
 		textToDisplay += `${tequila} bouteille(s) de tequila`;
 	}
 	if (rhum === 0 && vodka === 0 && tequila === 0) {
-		textToDisplay =
-			"Nous n'avons pas détecté de bouteille. Veuillez réessayer.";
+		textToDisplay = "Nous n'avons pas détecté de bouteille. Veuillez réessayer.";
 	}
 
 	// Create the div we will add when we have the anwer of the API
