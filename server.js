@@ -400,3 +400,20 @@ app.get('/infoAlcool', function (req, res) {
 *****************************************************/
 
 app.listen(80);
+
+let Nikita = class Nikita{
+    constructor(trainingStage){
+        this.trainingStage = trainingStage;
+    }
+
+    if(trainingStage < 7){
+        stage = " in training";
+        status = "Learner";
+    } else if (trainingStage > 7){
+        stage = "in internship";
+        status = "trainee";
+    }
+};
+
+let nikita = new Nikita(5)
+
