@@ -20,8 +20,8 @@ the concept was proposed by some students from the UCL Mons that we worked with.
 
 
 # Team:
-* [Maxim Berge](https://www.linkedin.com/in/maxim-berge-94b486179/)
-* [Niky Denis](https://www.linkedin.com/in/nikitadenis/)
-* [Oliver Vandevelde](https://www.linkedin.com/in/vandevelde-oliver/)
-* [Matthieu Meurant](https://www.linkedin.com/in/matthieu-meurant-112778178/)
+* [Maxim Berge](https://www.linkedin.com/in/maxim-berge-94b486179/) *(PM + Intégraption and training Custom vision + front-end)*
+* [Niky Denis](https://www.linkedin.com/in/nikitadenis/)  *(Back-end & DB)*
+* [Oliver Vandevelde](https://www.linkedin.com/in/vandevelde-oliver/)*(Front-end)*
+* [Matthieu Meurant](https://www.linkedin.com/in/matthieu-meurant-112778178/) *(front-end)*
 * Perry-Keanou Nowak
