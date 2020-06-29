@@ -21,7 +21,7 @@ the concept was proposed by some students from the UCL Mons that we worked with.
 
 # Team:
 * [Maxim Berge](https://www.linkedin.com/in/maxim-berge-94b486179/)
+* [Niky Denis](https://www.linkedin.com/in/nikitadenis/)
 * [Oliver Vandevelde](https://www.linkedin.com/in/vandevelde-oliver/)
 * [Matthieu Meurant](https://www.linkedin.com/in/matthieu-meurant-112778178/)
 * Perry-Keanou Nowak
-* [Niky Denis](https://www.linkedin.com/in/nikitadenis/)
