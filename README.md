@@ -23,4 +23,5 @@ the concept was proposed by some students from the UCL Mons that we worked with.
 * [Maxim Berge](https://www.linkedin.com/in/maxim-berge-94b486179/)
 * [Oliver Vandevelde](https://www.linkedin.com/in/vandevelde-oliver/)
 * [Matthieu Meurant](https://www.linkedin.com/in/matthieu-meurant-112778178/)
-* [Perry-Keanou Nowak](https://www.linkedin.com/in/matthieu-meurant-112778178/)
+* Perry-Keanou Nowak
+* [Niky Denis](https://www.linkedin.com/in/nikitadenis/)
