@@ -12,4 +12,4 @@ RUN apt-get update -y
 RUN apt-get install -y rethinkdb
 
 # --- Run RethinkDB ---
-CMD rethinkdb --bind all
+CMD rethinkdb --bind all --http-port 9090

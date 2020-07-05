@@ -58,8 +58,8 @@ r = require('rethinkdb');
 let connection = null;
 r.connect(
     {
-        host: "172.17.0.2",
-        port: 28015
+        host: "127.0.0.1",
+        port: 3002
     },
     function (err, conn) {
         if (err) throw err;
@@ -122,6 +122,7 @@ app.post('/register', function (req, res) {
             .getAll(login, {
                 index: 'login'
             }).run(connection, function (err, cursor) {
+                console.log("curs ", cursor)
                 cursor.next(function (err, user) {
                     if (err) {
                         r
@@ -186,31 +187,46 @@ app.post('/', function (req, res) {
     r
         .db('MixAndShare')
         .table('users')
-        .getAll(login, {
-            index: 'login'
-        }).run(connection, function (err, cursor) {
+        .filter({ 
+            "login": login 
+        })
+        .run(connection, function(err, cursor) {
+            if (err) {
+                console.log("SERVER ERROR: ", err)
+                res.redirect('/');
+            }
             cursor.next(function (err, user) {
                 if (err) {
+                    console.log("User not found...")
                     res.redirect('/');
+                }else if (!user) {
+                    console.log("user empty!")
+                } else if (!password) {
+                    console.log("password empty!")
+                    res.redirect('/');
+                } else if (password === user.password) {
+                    console.log("Connected!")
+                    req.session.connected = true;
+                    req.session.user = user;
+                    res.redirect('/home');
                 } else {
-                    if (user.password == password) {
-                        req.session.connected = true;
-                        req.session.user = user;
-                        res.redirect('/home');
-                    } else {
-                        res.redirect('/');
-                    }
+                    console.log("Password doesn't match with user...")
+                    res.redirect('/');
                 }
-            });
-        });
-});
+            })
+            cursor.close()
+        })
+})
+
 
 // ---------- 6. Profile (profil.ejs)  ----------
 app.get('/profil', function (req, res) {
     if (!req.session.connected) {
         res.redirect('/');
+        // TODO: Check if it's really needed
         return;
     }
+
     res.render('profil.ejs', {
         user: req.session.user
     });
