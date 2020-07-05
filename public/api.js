@@ -113,7 +113,7 @@ let showAnswer = () => {
 
 		if (tequila > 0) {
 			let divtequila = document.createElement("a");
-			divtequila.setAttribute("href", "/infoAlcool");
+			divtequila.setAttribute("href", "/infoCocktail");
 			divtequila.classList.add("textCocktail");
 			let tequilaText = document.createTextNode("Tequila Sunrise");
 			divtequila.appendChild(tequilaText);
@@ -122,7 +122,7 @@ let showAnswer = () => {
 
 		if (vodka > 0) {
 			let divVodka = document.createElement("a");
-			divVodka.setAttribute("href", "/infoAlcool");
+			divVodka.setAttribute("href", "/infoCocktail");
 			divVodka.classList.add("textCocktail");
 			let vodkaText = document.createTextNode("Bloody Merry");
 			divVodka.appendChild(vodkaText);
@@ -131,7 +131,7 @@ let showAnswer = () => {
 
 		if (rhum > 0) {
 			let divRhum = document.createElement("a");
-			divRhum.setAttribute("href", "/infoAlcool");
+			divRhum.setAttribute("href", "/infoCocktail");
 			divRhum.classList.add("textCocktail");
 			let rhumText = document.createTextNode("Grocq");
 			divRhum.appendChild(rhumText);

@@ -83,7 +83,7 @@ r.connect(
 **          9. Create event (createevent.ejs)       **
 **          10. Event x (soiree.ejs)                **
 **          11. Add bottel (upload.ejs)             **
-**      12. Cocktail of the month (infoAlcool.ejs)  **
+**      12. Cocktail of the month (infoCocktail.ejs)  **
 *****************************************************/
 
 // ---------- 1. Log In page (index.ejs) ✅  ----------
@@ -394,8 +394,8 @@ app.post("/upload", function (req, res) {
     });
 });
 
-// ---------- 12. Cocktail of the month (infoAlcool.ejs) ✅ ----------
-app.get('/infoAlcool', function (req, res) {
+// ---------- 12. Cocktail of the month (infoCocktail.ejs) ✅ ----------
+app.get('/infoCocktail', function (req, res) {
     if (!req.session.connected) {
         res.redirect('/');
         return;
@@ -413,7 +413,7 @@ app.get('/infoAlcool', function (req, res) {
                     } else {
                         data.liste = liste;
                     }
-                    res.render('infoAlcool.ejs', data);
+                    res.render('infoCocktail.ejs', data);
                 });
             }
         });
