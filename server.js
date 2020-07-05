@@ -86,7 +86,7 @@ r.connect(
 **      12. Cocktail of the month (infoAlcool.ejs)  **
 *****************************************************/
 
-// ---------- 1. Log In page (index.ejs)  ----------
+// ---------- 1. Log In page (index.ejs) ✅  ----------
 app.get('/', function (req, res) {
     if (req.session.connected) {
         res.redirect('/home');
@@ -96,17 +96,17 @@ app.get('/', function (req, res) {
 });
 
 // ---------- 2. Register (register.ejs) ----------
-
 // Fuction to verify if email is in correct format
-function validateEmail(email) {
+const validateEmail = email => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
 
-// Route
+// Page ✅
 app.get('/register', function (req, res) {
     res.render('register.ejs');
 });
+// Request ❌
 app.post('/register', function (req, res) {
     let name = req.body.name;
     let firstname = req.body.firstname;
@@ -162,14 +162,14 @@ app.get('/mailchanger', function (req, res) {
 });
 
 
-// ---------- Log Out ----------
+// ---------- Log Out ✅ ----------
 app.get('/logout', function (req, res) {
     req.session.destroy(function (err) {
         res.redirect('/');
     });
 });
 
-// ---------- 4. Home (home.ejs) [while connected]   ----------
+// ---------- 4. Home (home.ejs) [while connected] ✅   ----------
 app.get('/home', function (req, res) {
     if (!req.session.connected) {
         res.redirect('/');
@@ -180,7 +180,7 @@ app.get('/home', function (req, res) {
     });
 });
 
-// ---------- 5. Log Out (?) ----------
+// ---------- 5. Log IN ✅ ----------
 app.post('/', function (req, res) {
     let login = req.body.login;
     let password = req.body.password;
@@ -218,8 +218,7 @@ app.post('/', function (req, res) {
         })
 })
 
-
-// ---------- 6. Profile (profil.ejs)  ----------
+// ---------- 6. Profile (profil.ejs) ✅  ----------
 app.get('/profil', function (req, res) {
     if (!req.session.connected) {
         res.redirect('/');
@@ -232,7 +231,7 @@ app.get('/profil', function (req, res) {
     });
 });
 
-// ---------- 7. Cocktail (cocktails.ejs) ----------
+// ---------- 7. Cocktail (cocktails.ejs) ✅ ----------
 app.get('/cocktail', function (req, res) {
     if (!req.session.connected) {
         res.redirect('/');
@@ -395,23 +394,28 @@ app.post("/upload", function (req, res) {
     });
 });
 
-// ---------- 12. Cocktail of the month (infoAlcool.ejs) ----------
+// ---------- 12. Cocktail of the month (infoAlcool.ejs) ✅ ----------
 app.get('/infoAlcool', function (req, res) {
     if (!req.session.connected) {
         res.redirect('/');
         return;
     }
     r
-        .db('MixAndShare').table('liste_cocktails').limit(1).run(connection, function (err, cursor) {
-            cursor.next(function (err, liste) {
-                let data = {};
-                if (err) {
-                    data.liste = null;
-                } else {
-                    data.liste = liste;
-                }
-                res.render('infoAlcool.ejs', data);
-            });
+        .db('MixAndShare').table('list_cocktails').limit(1).run(connection, function (err, cursor) {
+            if (err) {
+                console.log("table list_cocktails doesn't exist or server error.")
+                res.redirect('/home');
+            } else {
+                cursor.next(function (err, liste) {
+                    let data = {};
+                    if (err) {
+                        data.liste = null;
+                    } else {
+                        data.liste = liste;
+                    }
+                    res.render('infoAlcool.ejs', data);
+                });
+            }
         });
 });
 
