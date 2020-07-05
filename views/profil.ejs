@@ -13,11 +13,11 @@
     </header>
     <main>
         <img src="/img/avatar small.jpg">
-        <h1>Nikita Denis</h1>
+        <h1><%=user.firstname%> <%=user.lastname%></h1>
     </main>
     <footer>
         <p><Email></p>
-        <p>niky.denis@gmail.com</p>
+        <p><%=user.login%></p>
         <p class="button"><a href="/mailchanger">Changer le mot de passe</a></p>
         <p class="button"><a href="/logout">Se déconnecter</a></p>
     </footer>
