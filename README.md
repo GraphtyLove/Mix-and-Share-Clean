@@ -18,6 +18,15 @@ the concept was proposed by some students from the UCL Mons that we worked with.
 * RethinkDB
 * Custom Vision API *(for the object recognition -> deeplearning)*
 
+## Make it run:
+In order to make it run, you will need to set-up the database. For the Database we use RethinkDB that is tricky to install.
+That's why we made a Docker container that install everything for you. To run it you will need docker.
+When Docker is installed, simply run these commands in you terminal:
+```bash
+docker pull graphtylove/rethinkdb:latest
+docker run -it graphtylove/rethinkdb:latest
+```
+The Database will be installed and will run on port `28015`.
 
 # Team:
 * [Maxim Berge](https://www.linkedin.com/in/maxim-berge-94b486179/) **(PM & Intégraption and training Custom Vision & front-end)**

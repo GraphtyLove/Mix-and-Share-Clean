@@ -398,4 +398,6 @@ app.get('/infoAlcool', function (req, res) {
 /*****************************************************
 **             WEBSITE PORT LISTENING               **
 *****************************************************/
-app.listen(1200);
+const PORT=1200
+console.log('Server running on port: ', PORT)
+app.listen(PORT);
