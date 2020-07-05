@@ -238,18 +238,23 @@ app.get('/cocktail', function (req, res) {
         res.redirect('/');
         return;
     }
-    r.db('MixAndShare').table('liste_cocktails').run(connection, function (err, cursor) {
-        cursor.toArray(function (err, liste) {
-            let data = {};
+    r.db('MixAndShare').table('list_cocktails').run(connection, function (err, cursor) {
+        if (err) {
+            console.log("list_cocktails table doesn't exist or server error.")
+            res.redirect('/home');
+        } else {
+            cursor.toArray(function (err, liste) {
+                let data = {};
 
-            if (err) {
-                data.liste = [];
-            } else {
-                data.liste = liste;
-            }
-
-            res.render('cocktail.ejs', data);
-        });
+                if (err) {
+                    data.liste = [];
+                    console.log("Cocktail list empty!")
+                } else {
+                    data.liste = liste;
+                }
+                res.render('cocktail.ejs', data);
+            })
+        }
     });
 });
 
