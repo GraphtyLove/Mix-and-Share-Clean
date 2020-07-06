@@ -106,11 +106,11 @@ app.get('/register', (req, res) => {
 })
 // Request
 app.post('/register', (req, res) => {
-    let lastname = req.body.lastname
-    let firstname = req.body.firstname
-    let login = req.body.login
-    let password = req.body.password
-    let password2 = req.body.password2
+    let lastname = req.body.lastname.toLocaleLowerCase().trim()
+    let firstname = req.body.firstname.toLocaleLowerCase().trim()
+    let login = req.body.login.toLocaleLowerCase().trim()
+    let password = req.body.password.trim()
+    let password2 = req.body.password2.trim()
 
     if (lastname.length > 2 && firstname.length > 2 && validateEmail(login) && password === password2) {
         // Request DB:
