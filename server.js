@@ -182,7 +182,7 @@ app.get('/home', (req, res) => {
 
 // ---------- 5. Log IN ✅ ----------
 app.post('/', (req, res) => {
-    let login = req.body.login
+    let login = req.body.login.toLocaleLowerCase().trim()
     let password = req.body.password
     r
         .db('MixAndShare')
@@ -202,7 +202,7 @@ app.post('/', (req, res) => {
                 } else if (!password) {
                     console.log("password empty!")
                     res.redirect('/')
-                } else if (password === user.password) {
+                } else if (password.trim() === user.password) {
                     console.log("Connected!")
                     req.session.connected = true
                     req.session.user = user
