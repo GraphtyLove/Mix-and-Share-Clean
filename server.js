@@ -74,7 +74,7 @@ r.connect(
 ** ------------------------------------------------ **
 **  1. Log In page (index.ejs)                      **
 **      2. Register (register.ejs)                  **
-**      3. Password Forgot (mailchanger.ejs)        **
+**      3. Password Forgot (forgotPassword.ejs)        **
 **  4. Home (home.ejs)                              **
 **      5. Log Out (?)                              **
 **      6. Profile (profil.ejs)                     **
@@ -106,7 +106,7 @@ const validateEmail = email => {
 app.get('/register', function (req, res) {
     res.render('register.ejs');
 });
-// Request ❌
+// Request ✅
 app.post('/register', function (req, res) {
     let lastname = req.body.lastname;
     let firstname = req.body.firstname;
@@ -155,13 +155,14 @@ app.post('/register', function (req, res) {
     }
 });
 
-// ---------- 3. Password Forgot (mailchanger.ejs) ----------
-app.get('/mailchanger', function (req, res) {
+// ---------- 3. Password Forgot (forgotPassword.ejs) ❌ ----------
+// TODO: Create forgotPassword.ejs + implement the logic.
+app.get('/forgotPassword', function (req, res) {
     if (!req.session.connected) {
         res.redirect('/');
         return;
     }
-    res.render('mailchanger.ejs');
+    res.render('forgotPassword.ejs');
 });
 
 
