@@ -17,9 +17,7 @@ const app = express()
 
 // ---------- ROUTS CONFIG ----------
 app.use(express.static(__dirname + '/public'))
-app.use(bodyParser.urlencoded({
-    extend: true
-}))
+app.use(bodyParser.urlencoded({ extend: true }))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 app.set('views', __dirname + '/views')
@@ -140,7 +138,7 @@ app.post('/register', (req, res) => {
                         res.redirect('/')
                         console.log(`User Registration success! name: ${firstname}, mail: ${login}`)
                     } else {
-                        res.render({ message: "mail existant" })
+                        res.render({ message: "Adresse email déjà utilisée!" })
                         res.redirect('/register')
                     }
                 })
