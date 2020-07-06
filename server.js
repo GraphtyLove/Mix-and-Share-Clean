@@ -69,22 +69,22 @@ r.connect(
 );
 
 
-/*****************************************************
-**                 ROUTING                          **
-** ------------------------------------------------ **
-**  1. Log In page (index.ejs)                      **
-**      2. Register (register.ejs)                  **
-**      3. Password Forgot (forgotPassword.ejs)        **
-**  4. Home (home.ejs)                              **
-**      5. Log Out (?)                              **
-**      6. Profile (profil.ejs)                     **
-**      7. Cocktail (cocktails.ejs)                 **
-**      8. Events (event.ejs)                       **
-**          9. Create event (createevent.ejs)       **
-**          10. Event x (soiree.ejs)                **
-**          11. Add bottel (upload.ejs)             **
-**      12. Cocktail of the month (infoCocktail.ejs)  **
-*****************************************************/
+/**********************************************************
+**                 ROUTING                               **
+** ------------------------------------------------      **
+**  1. Log In page (index.ejs) ✅                        **
+**      2. Register (register.ejs) ✅                    **
+**      3. Password Forgot (forgotPassword.ejs) ❌       **
+**  4. Home (home.ejs) ✅                                **
+**      5. Log Out (?) ✅                                **
+**      6. Profile (profil.ejs) ✅                       **
+**      7. Cocktail (cocktails.ejs) ✅                   **
+**      8. Events (event.ejs)   ❌                       **
+**          9. Create event (createevent.ejs) ❌         **
+**          10. Event x (soiree.ejs) ❌                  **
+**          11. Add bottel (upload.ejs) ❌               **
+**      12. Cocktail of the month (infoCocktail.ejs)     **
+**********************************************************/
 
 // ---------- 1. Log In page (index.ejs) ✅  ----------
 app.get('/', function (req, res) {
@@ -95,18 +95,18 @@ app.get('/', function (req, res) {
     res.render('index.ejs');
 });
 
-// ---------- 2. Register (register.ejs) ----------
+// ---------- 2. Register (register.ejs) ✅ ----------
 // Fuction to verify if email is in correct format
 const validateEmail = email => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
 
-// Page ✅
+// Page
 app.get('/register', function (req, res) {
     res.render('register.ejs');
 });
-// Request ✅
+// Request
 app.post('/register', function (req, res) {
     let lastname = req.body.lastname;
     let firstname = req.body.firstname;
@@ -261,8 +261,12 @@ app.get('/cocktail', function (req, res) {
     });
 });
 
-// ---------- 8. Events (event.ejs) ----------
+// ---------- 8. Events (event.ejs) ❌ ----------
 app.get('/event', function (req, res) {
+    // TODO: To remove, prevent server to crash because the route is buggy.
+    res.redirect('/');
+    return;
+
     if (!req.session.connected) {
         res.redirect('/');
         return;
@@ -281,8 +285,11 @@ app.get('/event', function (req, res) {
         });
 });
 
-// ---------- 9. Create event (createevent.ejs) ----------
+// ---------- 9. Create event (createevent.ejs) ❌ ----------
 app.get('/createevent', function (req, res) {
+    // TODO: To remove, prevent server to crash because the route is buggy.
+    res.redirect('/');
+    return;
     if (!req.session.connected) {
         res.redirect('/');
         return;
@@ -331,8 +338,11 @@ app.get('/createevent', function (req, res) {
     });
 });
 
-// ---------- 10. Event x (soiree.ejs) ----------
+// ---------- 10. Event x (soiree.ejs) ❌ ----------
 app.get('/soiree', function (req, res) {
+    // TODO: To remove, prevent server to crash because the route is buggy.
+    res.redirect('/');
+    return;
     if (!req.session.connected) {
         res.redirect('/');
         return;
@@ -378,16 +388,24 @@ app.get('/soiree', function (req, res) {
     });
 });
 
-// ---------- 11. Add bottles (upload.ejs) ----------
+// ---------- 11. Add bottles (upload.ejs) ❌ ----------
 app.get("/upload", function (req, res) {
+    // TODO: To remove, prevent server to crash because the route is buggy.
+    res.redirect('/');
+    return;
+
     if (!req.session.connected) {
         res.redirect("/");
         return;
     }
     res.render("upload.ejs");
 });
-// --- Set where and how images are upload in the server ---
+// --- Set where and how images are upload in the server ❌ ---
 app.post("/upload", function (req, res) {
+    // TODO: To remove, prevent server to crash because the route is buggy.
+    res.redirect('/');
+    return;
+
     let fs = require("fs-extra");
     multerHandler.fields([
         { name: "picture", maxCount: 1 }
