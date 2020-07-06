@@ -1,5 +1,5 @@
 /***************************************************************
-**                  EXPRESS (Serveur web)                     **
+**                      EXPRESS SERVER                        **
 **                  Server Mix and Share                      **
 ***************************************************************/
 
@@ -34,7 +34,7 @@ app.use(
 // ---------- MULTER CONFIG ----------
 // ----- Multer is a package that I use to upload images in the server for Custom Vision API-----
 let storage = multer.diskStorage({
-    destination: function (req, file, callback) {
+    destination: (req, file, callback) => {
         callback(null, "./public/img");
     },
     // Format the name of the file
@@ -61,7 +61,7 @@ r.connect(
         host: "127.0.0.1",
         port: 3002
     },
-    function (err, conn) {
+    (err, conn) => {
         if (err) throw err;
         connection = conn;
         console.log("Database connected");
@@ -77,17 +77,17 @@ r.connect(
 **      3. Password Forgot (forgotPassword.ejs) ❌       **
 **  4. Home (home.ejs) ✅                                **
 **      5. Log Out (?) ✅                                **
-**      6. Profile (profil.ejs) ✅                       **
+**      6. Profile (profile.ejs) ✅                        **
 **      7. Cocktail (cocktails.ejs) ✅                   **
 **      8. Events (event.ejs)   ❌                       **
 **          9. Create event (createevent.ejs) ❌         **
 **          10. Event x (soiree.ejs) ❌                  **
 **          11. Add bottel (upload.ejs) ❌               **
-**      12. Cocktail of the month (infoCocktail.ejs)     **
+**      12. Cocktail of the month (infoCocktail.ejs) ✅  **
 **********************************************************/
 
 // ---------- 1. Log In page (index.ejs) ✅  ----------
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     if (req.session.connected) {
         res.redirect('/home');
         return;
@@ -103,11 +103,11 @@ const validateEmail = email => {
 }
 
 // Page
-app.get('/register', function (req, res) {
+app.get('/register', (req, res) => {
     res.render('register.ejs');
 });
 // Request
-app.post('/register', function (req, res) {
+app.post('/register', (req, res) => {
     let lastname = req.body.lastname;
     let firstname = req.body.firstname;
     let login = req.body.login;
@@ -119,15 +119,13 @@ app.post('/register', function (req, res) {
         r
             .db('MixAndShare')
             .table('users')
-            .filter({
-                "login": login
-            })
-            .run(connection, function (err, cursor) {
+            .filter({ "login": login })
+            .run(connection, (err, cursor) => {
                 if (err){
                     console.log("Internal server error during register. Is users table exist?")
                     res.redirect('/');
                 }
-                cursor.next(function (err, user) {
+                cursor.next( (err, user) => {
                     if (err) {
                         r
                             .db('MixAndShare')
@@ -157,7 +155,7 @@ app.post('/register', function (req, res) {
 
 // ---------- 3. Password Forgot (forgotPassword.ejs) ❌ ----------
 // TODO: Create forgotPassword.ejs + implement the logic.
-app.get('/forgotPassword', function (req, res) {
+app.get('/forgotPassword', (req, res) => {
     if (!req.session.connected) {
         res.redirect('/');
         return;
@@ -167,14 +165,14 @@ app.get('/forgotPassword', function (req, res) {
 
 
 // ---------- Log Out ✅ ----------
-app.get('/logout', function (req, res) {
+app.get('/logout', (req, res) => {
     req.session.destroy(function (err) {
         res.redirect('/');
     });
 });
 
 // ---------- 4. Home (home.ejs) [while connected] ✅   ----------
-app.get('/home', function (req, res) {
+app.get('/home', (req, res) => {
     if (!req.session.connected) {
         res.redirect('/');
         return;
@@ -185,21 +183,19 @@ app.get('/home', function (req, res) {
 });
 
 // ---------- 5. Log IN ✅ ----------
-app.post('/', function (req, res) {
+app.post('/', (req, res) => {
     let login = req.body.login;
     let password = req.body.password;
     r
         .db('MixAndShare')
         .table('users')
-        .filter({ 
-            "login": login 
-        })
-        .run(connection, function(err, cursor) {
+        .filter({"login": login})
+        .run(connection, (err, cursor) => {
             if (err) {
                 console.log("SERVER ERROR: ", err)
                 res.redirect('/');
             }
-            cursor.next(function (err, user) {
+            cursor.next( (err, user) => {
                 if (err) {
                     console.log("User not found...")
                     res.redirect('/');
@@ -222,31 +218,34 @@ app.post('/', function (req, res) {
         })
 })
 
-// ---------- 6. Profile (profil.ejs) ✅  ----------
-app.get('/profil', function (req, res) {
+// ---------- 6. Profile (profile.ejs) ✅  ----------
+app.get('/profile', (req, res) => {
     if (!req.session.connected) {
         res.redirect('/');
         // TODO: Check if it's really needed
         return;
     }
 
-    res.render('profil.ejs', {
+    res.render('profile.ejs', {
         user: req.session.user
     });
 });
 
 // ---------- 7. Cocktail (cocktails.ejs) ✅ ----------
-app.get('/cocktail', function (req, res) {
+app.get('/cocktail', (req, res) => {
     if (!req.session.connected) {
         res.redirect('/');
         return;
     }
-    r.db('MixAndShare').table('list_cocktails').run(connection, function (err, cursor) {
+    r
+        .db('MixAndShare')
+        .table('list_cocktails')
+        .run(connection, (err, cursor) => {
         if (err) {
             console.log("list_cocktails table doesn't exist or server error.")
             res.redirect('/home');
         } else {
-            cursor.toArray(function (err, liste) {
+            cursor.toArray( (err, liste) => {
                 let data = {};
 
                 if (err) {
@@ -262,7 +261,7 @@ app.get('/cocktail', function (req, res) {
 });
 
 // ---------- 8. Events (event.ejs) ❌ ----------
-app.get('/event', function (req, res) {
+app.get('/event', (req, res) => {
     // TODO: To remove, prevent server to crash because the route is buggy.
     res.redirect('/');
     return;
@@ -272,7 +271,7 @@ app.get('/event', function (req, res) {
         return;
     }
     r.
-        db('Event').table('event_info').run(connection, function (err, cursor) {
+        db('Event').table('event_info').run(connection, (err, cursor) => {
             cursor.toArray(function (err, events) {
                 let data = {};
                 if (err) {
@@ -286,16 +285,17 @@ app.get('/event', function (req, res) {
 });
 
 // ---------- 9. Create event (createevent.ejs) ❌ ----------
-app.get('/createevent', function (req, res) {
+app.get('/createevent', (req, res) => {
     // TODO: To remove, prevent server to crash because the route is buggy.
     res.redirect('/');
     return;
+
     if (!req.session.connected) {
         res.redirect('/');
         return;
     }
     r
-        .db('Event').table('event_info').limit(1).run(connection, function (err, cursor) {
+        .db('Event').table('event_info').limit(1).run(connection, (err, cursor) => {
             cursor.next(function (err, event) {
                 let data = {};
                 if (err) {
@@ -306,7 +306,7 @@ app.get('/createevent', function (req, res) {
                 res.render('createevent.ejs', data);
             });
         });
-    app.post('/createevent', function (req, res) {
+    app.post('/createevent', (req, res) => {
         let name_event = req.body.name_event;
         let adresse = req.body.adresse;
         let date_event = req.body.date_event;
@@ -317,7 +317,7 @@ app.get('/createevent', function (req, res) {
             .getAll(name_event, {
                 index: 'name_event'
             })
-            .run(connection, function (err, cursor) {
+            .run(connection, (err, cursor) => {
                 cursor.next(function (err, event) {
                     if (err) {
                         r
@@ -339,15 +339,16 @@ app.get('/createevent', function (req, res) {
 });
 
 // ---------- 10. Event x (soiree.ejs) ❌ ----------
-app.get('/soiree', function (req, res) {
+app.get('/soiree', (req, res) => {
     // TODO: To remove, prevent server to crash because the route is buggy.
     res.redirect('/');
     return;
+
     if (!req.session.connected) {
         res.redirect('/');
         return;
     }
-    r.db('Event').table('event_info').limit(1).run(connection, function (err, cursor) {
+    r.db('Event').table('event_info').limit(1).run(connection, (err, cursor) => {
         cursor.next(function (err, event) {
             let data = {};
             if (err) {
@@ -358,7 +359,7 @@ app.get('/soiree', function (req, res) {
             res.render('event.ejs', data);
         });
     });
-    app.post('/soiree', function (req, res) {
+    app.post('/soiree', (req, res) => {
         let bottle_name = req.body.bottle_name;
         let bottle_number = req.body.bottle_number;
         // Request DB:
@@ -368,7 +369,7 @@ app.get('/soiree', function (req, res) {
             .getAll(bottle_name, {
                 index: 'bottle_name'
             })
-            .run(connection, function (err, cursor) {
+            .run(connection, (err, cursor) => {
                 cursor.next(function (err, event) {
                     if (err) {
                         r
@@ -389,7 +390,7 @@ app.get('/soiree', function (req, res) {
 });
 
 // ---------- 11. Add bottles (upload.ejs) ❌ ----------
-app.get("/upload", function (req, res) {
+app.get("/upload", (req, res) => {
     // TODO: To remove, prevent server to crash because the route is buggy.
     res.redirect('/');
     return;
@@ -401,7 +402,7 @@ app.get("/upload", function (req, res) {
     res.render("upload.ejs");
 });
 // --- Set where and how images are upload in the server ❌ ---
-app.post("/upload", function (req, res) {
+app.post("/upload", (req, res) => {
     // TODO: To remove, prevent server to crash because the route is buggy.
     res.redirect('/');
     return;
@@ -417,23 +418,26 @@ app.post("/upload", function (req, res) {
 });
 
 // ---------- 12. Cocktail of the month (infoCocktail.ejs) ✅ ----------
-app.get('/infoCocktail', function (req, res) {
+app.get('/infoCocktail', (req, res) => {
     if (!req.session.connected) {
         res.redirect('/');
         return;
     }
     r
-        .db('MixAndShare').table('list_cocktails').limit(1).run(connection, function (err, cursor) {
+        .db('MixAndShare')
+        .table('list_cocktails')
+        .limit(1)
+        .run(connection, (err, cursor) => {
             if (err) {
                 console.log("table list_cocktails doesn't exist or server error.")
                 res.redirect('/home');
             } else {
-                cursor.next(function (err, liste) {
+                cursor.next(function (err, list) {
                     let data = {};
                     if (err) {
-                        data.liste = null;
+                        data.list = null;
                     } else {
-                        data.liste = liste;
+                        data.list = list;
                     }
                     res.render('infoCocktail.ejs', data);
                 });
