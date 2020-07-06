@@ -108,32 +108,35 @@ app.get('/register', function (req, res) {
 });
 // Request ❌
 app.post('/register', function (req, res) {
-    let name = req.body.name;
+    let lastname = req.body.lastname;
     let firstname = req.body.firstname;
     let login = req.body.login;
     let password = req.body.password;
     let password2 = req.body.password2;
 
-    if (name.length > 2 && firstname.length > 2 && validateEmail(login) && password === password2) {
+    if (lastname.length > 2 && firstname.length > 2 && validateEmail(login) && password === password2) {
         // Request DB:
         r
             .db('MixAndShare')
             .table('users')
-            .getAll(login, {
-                index: 'login'
-            }).run(connection, function (err, cursor) {
-                console.log("curs ", cursor)
+            .filter({
+                "login": login
+            })
+            .run(connection, function (err, cursor) {
+                if (err){
+                    console.log("Internal server error during register. Is users table exist?")
+                    res.redirect('/');
+                }
                 cursor.next(function (err, user) {
                     if (err) {
                         r
                             .db('MixAndShare')
                             .table('users')
                             .insert({
-                                name,
+                                lastname,
                                 firstname,
                                 login,
                                 password,
-                                password2
                             })
                             .run(connection);
                         res.redirect('/');
