@@ -21,7 +21,6 @@ const insertUser = () => {
         .db('MixAndShare')
         .table('users')
         .insert({
-            "id": 1,
             "login": "maxim.berge@gmail.com",
             "firstname": "Maxim",
             "lastname": "berge",
