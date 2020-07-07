@@ -68,7 +68,7 @@ r.connect(
 
 
 /**********************************************************
-**                 ROUTING                               **
+**                      ROUTING                          **
 ** ------------------------------------------------      **
 **  1. Log In page (index.ejs) ✅                        **
 **      2. Register (register.ejs) ✅                    **
@@ -258,18 +258,19 @@ app.get('/cocktail', (req, res) => {
     })
 })
 
-// ---------- 8. Events (event.ejs) ❌ ----------
+// ---------- 8. Events (event.ejs) ❌? ----------
 app.get('/event', (req, res) => {
-    // TODO: To remove, prevent server to crash because the route is buggy.
-    res.redirect('/')
-    return
-
     if (!req.session.connected) {
         res.redirect('/')
         return
     }
     r.
         db('Event').table('event_info').run(connection, (err, cursor) => {
+            if (err) {
+                console.log("Server error. Is TABLE event_info exist in DB Event?")
+                res.redirect('/home')
+                return
+            }
             cursor.toArray(function (err, events) {
                 let data = {}
                 if (err) {
@@ -282,18 +283,19 @@ app.get('/event', (req, res) => {
         })
 })
 
-// ---------- 9. Create event (createevent.ejs) ❌ ----------
+// ---------- 9. Create event (createevent.ejs) ❌? ----------
 app.get('/createevent', (req, res) => {
-    // TODO: To remove, prevent server to crash because the route is buggy.
-    res.redirect('/')
-    return
-
     if (!req.session.connected) {
         res.redirect('/')
         return
     }
     r
         .db('Event').table('event_info').limit(1).run(connection, (err, cursor) => {
+            if (err) {
+                console.log("Server error. Is TABLE event_info exist in DB Event?")
+                res.redirect('/home')
+                return
+            }
             cursor.next(function (err, event) {
                 let data = {}
                 if (err) {
@@ -336,75 +338,76 @@ app.get('/createevent', (req, res) => {
     })
 })
 
-// ---------- 10. Event x (soiree.ejs) ❌ ----------
+// ---------- 10. Event x (soiree.ejs) ❌? ----------
 app.get('/soiree', (req, res) => {
-    // TODO: To remove, prevent server to crash because the route is buggy.
-    res.redirect('/')
-    return
-
     if (!req.session.connected) {
         res.redirect('/')
         return
     }
-    r.db('Event').table('event_info').limit(1).run(connection, (err, cursor) => {
-        cursor.next(function (err, event) {
-            let data = {}
+    r
+        .db('Event')
+        .table('event_info')
+        .limit(1)
+        .run(connection, (err, cursor) => {
             if (err) {
-                data.event = null
-            } else {
-                data.event = event
+                console.log("Server error. Is TABLE event_info exist in DB Event?")
+                res.redirect('/home')
+                return
             }
-            res.render('event.ejs', data)
+            cursor.next(function (err, event) {
+                let data = {}
+                if (err) {
+                    data.event = null
+                } else {
+                    data.event = event
+                }
+                res.render('event.ejs', data)
+            })
         })
-    })
-    app.post('/soiree', (req, res) => {
-        let bottle_name = req.body.bottle_name
-        let bottle_number = req.body.bottle_number
-        // Request DB:
-        r
-            .db('Event')
-            .table('bottle')
-            .getAll(bottle_name, {
-                index: 'bottle_name'
+})
+// Create new event
+app.post('/soiree', (req, res) => {
+    let bottle_name = req.body.bottle_name
+    let bottle_number = req.body.bottle_number
+
+    r
+        .db('Event')
+        .table('bottle')
+        .getAll(bottle_name, {
+            index: 'bottle_name'
+        })
+        .run(connection, (err, cursor) => {
+            if (err){
+                console.log("Server error. Is TABLE bottle exist in DB Event?")
+                res.redirect('/home')
+                return
+            }
+            cursor.next(function (err, event) {
+                if (err) {
+                    r
+                        .db('Event')
+                        .table('event_info')
+                        .insert({
+                            bottle_name,
+                            bottle_number,
+                        })
+                        .run(connection)
+                }
+                res.redirect('/soiree')
             })
-            .run(connection, (err, cursor) => {
-                cursor.next(function (err, event) {
-                    if (err) {
-                        r
-                            .db('Event')
-                            .table('event_info')
-                            .insert({
-                                bottle_name,
-                                bottle_number,
-                            })
-                            .run(connection)
-                        res.redirect('/soiree')
-                    } else {
-                        res.redirect('/ soiree')
-                    }
-                })
-            })
-    })
+        })
 })
 
-// ---------- 11. Add bottles (upload.ejs) ❌ ----------
+// ---------- 11. Add bottles (upload.ejs) ❌? ----------
 app.get("/upload", (req, res) => {
-    // TODO: To remove, prevent server to crash because the route is buggy.
-    res.redirect('/')
-    return
-
     if (!req.session.connected) {
         res.redirect("/")
         return
     }
     res.render("upload.ejs")
 })
-// --- Set where and how images are upload in the server ❌ ---
+// --- Set where and how images are upload in the server ❌? ---
 app.post("/upload", (req, res) => {
-    // TODO: To remove, prevent server to crash because the route is buggy.
-    res.redirect('/')
-    return
-
     let fs = require("fs-extra")
     multerHandler.fields([
         { name: "picture", maxCount: 1 }
@@ -427,19 +430,19 @@ app.get('/infoCocktail', (req, res) => {
         .limit(1)
         .run(connection, (err, cursor) => {
             if (err) {
-                console.log("table list_cocktails doesn't exist or server error.")
+                console.log("Server error. Is TABLE list_cocktails exist in DB MixAndShare?")
                 res.redirect('/home')
-            } else {
-                cursor.next(function (err, list) {
-                    let data = {}
-                    if (err) {
-                        data.list = null
-                    } else {
-                        data.list = list
-                    }
-                    res.render('infoCocktail.ejs', data)
-                })
+                return
             }
+            cursor.next(function (err, list) {
+                let data = {}
+                if (err) {
+                    data.list = null
+                } else {
+                    data.list = list
+                }
+                res.render('infoCocktail.ejs', data)
+            })
         })
 })
 
