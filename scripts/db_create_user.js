@@ -1,5 +1,4 @@
 r = require('rethinkdb');
-
 let connection = null;
 
 const connectToDb = () => {
