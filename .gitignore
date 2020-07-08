@@ -1,2 +1,5 @@
 node_modules
 .nvimlog
+.idea
+.DS_Store
+*.env
