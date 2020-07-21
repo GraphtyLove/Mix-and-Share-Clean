@@ -32,15 +32,9 @@ const getUser = () => {
     console.log("user inserted.")
 }
 
-
-
 const startScript = () => {
     connectToDb()
     setTimeout(getUser, 5000)
 }
 
 startScript()
-
-
-
-

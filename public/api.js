@@ -1,11 +1,8 @@
 /***************************************************************
  **                  	API Custom Vision 	                  **
- ****************************************************************/
+ ***************************************************************/
 
-// Variable that contain the answer of the API (as an object)
-let answerOfTheApi
-
-// Call of the API
+// API call
 $("#uploadForm").submit(e => {
 	e.preventDefault()
 	let formData = new FormData(this)
@@ -45,7 +42,7 @@ $("#uploadForm").submit(e => {
 			.done(function (data) {
 				answerOfTheApi = data
 				console.log(`API call success. Answer: ${answerOfTheApi}`)
-				showAnswer()
+				showAnswer(answerOfTheApi)
 			})
 			.fail(function (err) {
 				console.log(`API fail. Error: ${err}`)
@@ -63,7 +60,7 @@ $("#uploadForm").submit(e => {
 
 // Function that display the answer of the API on the view
 // It also display cocktails depending of the alcohol avalaible
-let showAnswer = () => {
+let showAnswer = answerOfTheApi => {
 	// --- number of the bottle we got from the API ---
 	let tequila = 0
 	let vodka = 0

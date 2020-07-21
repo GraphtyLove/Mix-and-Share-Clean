@@ -2,28 +2,34 @@
     font-family: "Pacifico-Regular";
     src: url('../font/Pacifico-Regular.ttf');
 }
-@font-face{
+
+@font-face {
     font-family: "VarelaRound-Regular";
     src: url('../font/VarelaRound-Regular.ttf');
 }
-body{
+
+body {
     margin: 0;
     padding: 0;
+    min-width: 98vh;
     font-family: "VarelaRound-Regular";
     background-image: url('../img/wall.jpg');
     color: white;
 }
-h1, h2{
+
+h1, h2 {
     font-size: 22px;
     font-family: "Pacifico-Regular";
     font-weight:normal;
     color: white;
 }
-a{
+
+a {
     text-decoration: none;
     text-align: center;
     color: white;
 }
-a:visited{
+
+a:visited {
     color: white;
 }
